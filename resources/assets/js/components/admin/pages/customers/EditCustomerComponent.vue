@@ -21,11 +21,17 @@ export default{
         }
    },
    created (){
-     this.$store.dispatch('loadCustomer', this.id)
-                    .then(response=> this.customer = response)
-                    .catch(error => {
-                      console.log(error)
-                    })
+        this.loadCustomer()
+   },
+   methods: {
+     loadCustomer (){
+       this.$store.dispatch('loadCustomer', this.id)
+                 .then(response=> this.customer = response)
+                 .catch(error => {
+                    this.$snotify.error('Categoria não encontrada', '404')
+                    this.$router.push({name: 'admin.customers'})
+                 })
+     }
    },
    data(){
      return {

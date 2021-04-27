@@ -10,10 +10,10 @@ export default{
         }
     },
     actions: {
-        loadCustomers(context) {
+        loadCustomers(context, params) {
             context.commit('PRELOADER',true)
 
-            axios.get('/api/customers')
+            axios.get('/api/customers', {params})
                 .then(response => {
                     console.log(response)
                     
